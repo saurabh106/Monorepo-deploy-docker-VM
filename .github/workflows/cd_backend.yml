@@ -10,24 +10,20 @@ jobs:
     steps:
       - name: Checkout the code
         uses: actions/checkout@v2  
-
-      # Step 1: Docker login (Ensure Docker Hub credentials are correct)
+      # Step 1: Login to Docker
       - name: Docker login
-        run: echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin
-
-      # Optional: Enable Docker debug mode for more detailed logs
-      - name: Set up Docker debug mode
-        run: |
-          echo "{ \"experimental\": true }" > ~/.docker/config.json
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
 
       # Step 2: Build and push Docker image
       - name: Build and push Docker image
-        uses: docker/build-push-action@v3  # Use v3 for more stability
+        uses: docker/build-push-action@v4
         with:
           context: .
           file: ./docker/Dockerfile.backend
           push: true
           tags: saurabh106/todo-app-backend:${{ github.sha }}
 
-      # Step 3: Deploy to VM (if needed)
-      # Add your deployment steps here
+       # Step 3: Deploy to VM
