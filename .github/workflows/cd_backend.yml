@@ -30,7 +30,8 @@ jobs:
           context: .
           file: ./docker/Dockerfile.backend
           push: true
-          tags: saurabh106/todo-app-backend:${{ github.sha }}
+          tags: saurabh106/todo-app-backend:latest
+
 
       # Step 3: Deploy to VM
       # Add your deployment steps here
