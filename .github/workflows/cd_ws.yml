@@ -22,7 +22,7 @@ jobs:
         uses: docker/build-push-action@v4
         with:
           context: .
-          file: ./docker/Dockerfile.websocket
+          file: ./docker/Dockerfile.ws
           push: true
           tags: saurabh106/todo-app-websocket:${{ github.sha }}
 
