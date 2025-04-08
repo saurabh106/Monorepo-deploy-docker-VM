@@ -10,7 +10,7 @@ jobs:
     steps:
       - name: Checkout the code
         uses: actions/checkout@v2  
-      # Step 1: Login to Docker
+      # Step 1: Login to Docker or else check also install or not  
       - name: Docker login
         uses: docker/login-action@v2
         with:
